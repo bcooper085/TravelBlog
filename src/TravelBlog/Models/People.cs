@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace TravelBlog.Models
 {
-    [Table("Locations")]
-    public class Location
+    [Table("Peoples")]
+    public class People
     {
-        [Key]
-        public int LocationId { get; set; }
-        public string Name { get; set; }
-        public int PeopleId { get; set; }
-        public virtual People People { get; set; }
+        public People()
+        {
+            this.Locations = new HashSet<Location>();
+        }
 
+        [Key]
+        public int PeopleId { get; set; }
+        public string Name { get; set; }
+        public virtual ICollection<Location> Locations { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TravelBlog.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace TravelBlog.Controllers
 {
@@ -13,7 +14,7 @@ namespace TravelBlog.Controllers
         private TravelBlogContext db = new TravelBlogContext();
         public IActionResult Index()
         {
-            return View(db.Locations.ToList());
+            return View(db.Locations.Include(locations => locations.People).ToList());
         }
 
         public IActionResult Details(int id)
@@ -24,6 +25,7 @@ namespace TravelBlog.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.PeopleId = new SelectList(db.Peoples, "PeopleId", "Name");
             return View();
         }
 
@@ -38,6 +40,7 @@ namespace TravelBlog.Controllers
         public IActionResult Edit(int id)
         {
             var thisLocation = db.Locations.FirstOrDefault(locations => locations.LocationId == id);
+            ViewBag.PeopleId = new SelectList(db.Peoples, "PeopleId", "Name");
             return View(thisLocation);
         }
 
