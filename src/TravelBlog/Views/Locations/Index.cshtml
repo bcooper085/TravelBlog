@@ -10,8 +10,9 @@
     <ul>
         @foreach (var listLocation in Model)
         {
-            <li>@Html.DisplayFor(modelItem => listLocation.Name) | @Html.ActionLink("Details", "Details", new { id = listLocation.LocationId })</li>
+            <li>@Html.DisplayFor(modelItem => listLocation.Name) | @Html.ActionLink("Details", "Details", new { id = listLocation.LocationId }) | @Html.ActionLink("Edit", "Edit", new { id = listLocation.LocationId }) | @Html.ActionLink("Delete", "Delete", new { id = listLocation.LocationId })</li>
         }
+        <p>@Html.ActionLink("Add new location", "Create")</p>
     </ul>
 </body>
 </html>
