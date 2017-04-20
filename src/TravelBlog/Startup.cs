@@ -12,7 +12,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using TravelBlog.Models;
 
-
 namespace TravelBlog
 {
     public class Startup
@@ -47,6 +46,8 @@ namespace TravelBlog
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseStaticFiles();
 
             app.Run(async (context) =>
             {
